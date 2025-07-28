@@ -30,4 +30,10 @@ export class ClientService {
   async get() {
     return await this.clientRepository.find();
   }
+
+  async getById(id: number) {
+    return await this.clientRepository.findOneBy({
+      id: id,
+    });
+  }
 }
