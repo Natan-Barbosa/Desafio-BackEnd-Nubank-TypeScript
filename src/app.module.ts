@@ -22,7 +22,7 @@ dotenv.config();
       entities: [ClientEntitie, ContactEntity],
       autoLoadEntities: true,
       synchronize: true,
-      logging: true,
+      // logging: true,
     }),
     ClientModule,
     ContactsModule,
