@@ -3,8 +3,10 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import * as dotenv from 'dotenv';
-import { ClientEntitie } from './Client/client.entity';
-import { ContactEntity } from './Contacts/contact.entity';
+import { ClientEntitie } from './client/client.entity';
+import { ContactEntity } from './contacts/contact.entity';
+import { ClientModule } from './client/client.module';
+import { ContactsModule } from './contacts/contacts.module';
 
 dotenv.config();
 
@@ -21,6 +23,8 @@ dotenv.config();
       autoLoadEntities: true,
       synchronize: true,
     }),
+    ClientModule,
+    ContactsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
