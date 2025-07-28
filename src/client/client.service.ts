@@ -1,4 +1,26 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { ClientEntitie } from './client.entity';
+import { Repository } from 'typeorm';
+import { CreateClientDto } from './client.dto';
+import { plainToClass } from 'class-transformer';
 
 @Injectable()
-export class ClientService {}
+export class ClientService {
+  constructor(
+    @InjectRepository(ClientEntitie)
+    private clientRepository: Repository<ClientEntitie>,
+  ) {}
+
+  async create(dto: CreateClientDto) {
+    const clientAlreadyExists = await this.clientRepository.existsBy({
+      cnpj: dto.cnpj,
+    });
+    if (clientAlreadyExists) {
+      throw new BadRequestException('Client Already Exists');
+    }
+
+    const newClient = plainToClass(ClientEntitie, dto);
+    return await this.clientRepository.save(newClient);
+  }
+}
