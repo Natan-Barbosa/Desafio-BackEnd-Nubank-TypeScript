@@ -15,6 +15,8 @@ export class ClientEntitie {
   @Column({ name: 'created_at' })
   createdAt: Date;
 
-  @OneToMany(() => ContactEntity, (ContactEntity) => ContactEntity.client)
+  @OneToMany(() => ContactEntity, (ContactEntity) => ContactEntity.client, {
+    eager: true,
+  })
   contacts: ContactEntity[];
 }
