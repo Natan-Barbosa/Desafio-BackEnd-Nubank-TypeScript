@@ -7,5 +7,5 @@ export class CreateClientDto {
 
   @Length(14, 14)
   cnpj: string;
-  createdAt = new Date().toISOString();
+  createdAt;
 }
