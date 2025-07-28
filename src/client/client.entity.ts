@@ -1,4 +1,4 @@
-import { ContactEntity } from 'src/Contacts/contact.entity';
+import { ContactEntity } from 'src/contacts/contact.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ name: 'client_table' })
