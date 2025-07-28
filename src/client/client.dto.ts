@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString, Length } from 'class-validator';
+import { IsNotEmpty, IsNumberString, IsString, Length } from 'class-validator';
 
 export class CreateClientDto {
   @IsString()
@@ -7,5 +7,10 @@ export class CreateClientDto {
 
   @Length(14, 14)
   cnpj: string;
-  createdAt;
+  createdAt: Date;
+}
+
+export class GetClientByIdDto {
+  @IsNumberString()
+  id: number;
 }
