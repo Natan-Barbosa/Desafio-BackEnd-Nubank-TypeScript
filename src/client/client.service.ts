@@ -20,7 +20,10 @@ export class ClientService {
       throw new BadRequestException('Client Already Exists');
     }
 
-    const newClient = plainToClass(ClientEntitie, dto);
+    const newClient = plainToClass(ClientEntitie, {
+      ...dto,
+      createdAt: new Date(),
+    });
     return await this.clientRepository.save(newClient);
   }
 }
