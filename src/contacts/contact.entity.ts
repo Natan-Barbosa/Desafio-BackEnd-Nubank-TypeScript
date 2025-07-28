@@ -3,7 +3,7 @@ import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ name: 'contact_table' })
 export class ContactEntity {
-  @PrimaryGeneratedColumn('identity')
+  @PrimaryGeneratedColumn('increment')
   id: number;
 
   @Column({ name: 'contact_name', nullable: false })
@@ -15,6 +15,9 @@ export class ContactEntity {
   @Column({ name: 'created_at' })
   createdAt: Date;
 
-  @ManyToOne(() => ClientEntitie, (ClientEntitie) => ClientEntitie.contacts)
+  @ManyToOne(() => ClientEntitie, (ClientEntitie) => ClientEntitie.contacts, {
+    cascade: true,
+    eager: false,
+  })
   client: ClientEntitie;
 }
