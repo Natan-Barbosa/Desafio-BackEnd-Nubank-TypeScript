@@ -3,6 +3,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import * as dotenv from 'dotenv';
+import { ClientEntitie } from './Client/client.entity';
+import { ContactEntity } from './Contacts/contact.entity';
 
 dotenv.config();
 
@@ -15,7 +17,8 @@ dotenv.config();
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      entities: [__dirname + 'entity/*.js'],
+      entities: [ClientEntitie, ContactEntity],
+      autoLoadEntities: true,
       synchronize: true,
     }),
   ],
